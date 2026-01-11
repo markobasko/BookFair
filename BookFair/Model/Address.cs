@@ -1,6 +1,7 @@
-﻿using System;
+﻿using BookFair.Serialization;
+using System;
 
-public class Address
+public class Address : ISerializable
 {
 	public int Id { get; set; }
 	public string Street { get; set; }
@@ -15,6 +16,10 @@ public class Address
         stNumber = 0;
         City = string.Empty;
 		Country = string.Empty;
+	}
+
+	public Address()
+	{
 
 	}
 }
