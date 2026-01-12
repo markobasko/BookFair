@@ -18,8 +18,4 @@ public class Address : ISerializable
 		Country = string.Empty;
 	}
 
-	public Address()
-	{
-
-	}
 }
