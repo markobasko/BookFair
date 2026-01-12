@@ -1,4 +1,4 @@
-﻿using system;
+﻿using System;
 public abstract class Person
 {
     public string FirstName { get; set; }
