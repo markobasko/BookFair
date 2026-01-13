@@ -38,6 +38,15 @@ namespace BookFair.Model
             NumberOfPages = 0;
 
         }
+
+        public Book(string isbn, string name, Genre genre, int price, int numberofpages)
+        {
+            ISBN = isbn;
+            Name = name;
+            Genre = genre;
+            Price = price;
+            NumberOfPages = numberofpages;
+        }
         public string[] ToCSV()
         {
             string[] csvValues =
@@ -59,6 +68,9 @@ namespace BookFair.Model
             Genre = Enum.Parse<Genre>(values[3]);
             Price = int.Parse(values[4]);
             NumberOfPages = int.Parse(values[5]);
+            
         }
+
     }
+
 }

@@ -19,9 +19,36 @@ namespace BookFair.Model
 		}
 		public override string ToString()
 		{
-			return $"Author[Id:{Id},FirstName:{FirstName},LastName:{LastName},BirthDate:{DateOfBirth},Address:{Address},PhoneNumber:{PhoneNumber},Email:{Email},YearsExperience:{YearsExperience},IDLK:{IdCardNumber}]";
+			return $"Author[Id:{Id},FirstName:{FirstName},LastName:{LastName},BirthDate:{DateOfBirth},Address:{Address},PhoneNumber:{PhoneNumber},Email:{Email},YearsExperience:{YearsOfExperience},IDLK:{IdCardNumber}]";
 		}
 
-
-	}
+        public string[] ToCSV()
+        {
+            string[] csvValues =
+            {
+                Id.ToString(),
+                FirstName,
+                LastName,
+                DateOfBirth.ToString("yyyy-MM-dd"),
+                Address.Id.ToString(),
+                PhoneNumber,
+                Email,
+                IdCardNumber,
+                YearsOfExperience.ToString()
+            };
+            return csvValues;
+        }
+        public void FromCSV(string[] values)
+        {
+            Id = int.Parse(values[0]);
+            FirstName = values[1];
+            LastName = values[2];
+            DateOfBirth = DateTime.Parse(values[3]);
+            Address.Id = int.Parse(values[4]);
+            PhoneNumber = values[5];
+            Email = values[6];
+            IdCardNumber = values[7];
+            YearsOfExperience = int.Parse(values[8]);
+        }
+    }
 }

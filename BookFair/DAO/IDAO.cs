@@ -7,6 +7,5 @@ namespace BookFair.DAO
         void Remove(int id);
         void Update(T item);
         List<T> GetAll();
-        public List<T> GetAll(int page, int pageSize, string sortCriteria);
     }
 }

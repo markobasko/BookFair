@@ -1,4 +1,5 @@
-﻿using BookFair.Service;
+﻿using BookFair.Model;
+using BookFair.Service;
 using System;
 namespace BookFair
 {
@@ -19,52 +20,12 @@ namespace BookFair
 
         public static void Main(string[] args)
         {
-            bool running = true; 
-            while (running)
-            {
-                ShowMenu();
-                string choice = Console.ReadLine() ?? "";
-                switch(choice)
-                {
-                    case "1":
-                        AddBook();
-                        break;
-                    case "2":
-                        RemoveBook();
-                        break;
-                    case "3":
-                        PrintBooks();
-                        break;
-                    case "4":
-                        AddAddress();
-                        break;
-                    case "5":
-                        RemoveAddress();
-                        break;
-                    case "6":
-                        PrintAddresses();
-                        break;
-                    case "7":
-                        AddAutor();
-                        break;
-                    case "8":
-                        RemoveAuthor();
-                        break;
-                    case "9":
-                        PrintAuthors();
-                        break;
-                    case "10":
-                        AddVisitor();
-                        break;
-                    case "11":
-                        RemoveVisitor();
-                        break;
-                    case "12":
-                        PrintVisitors();
-                        break;
-                }
-            }
+            Application app = new Application();
+            app.Run();
 
         }
+
+      
+      
     }
 }
