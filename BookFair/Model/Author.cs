@@ -7,7 +7,6 @@ namespace BookFair.Model
 	{
 		public int Id { get; set; }
 		public string IdCardNumber { get; set; }
-		public List<Book> WrittenBooks { get; set; }
 		public int YearsOfExperience { get; set; }
 
 		public Author()
@@ -15,7 +14,6 @@ namespace BookFair.Model
 			Id = 0;
 			IdCardNumber = string.Empty;
 			YearsOfExperience = 0;
-			WrittenBooks = new List<Book>();
 		}
 
         public Author(string firstName, string lastName, DateTime dateOfBirth,Address address,string phoneNumber, string email,string idCardNumber, int yearsOfExperience) : base(firstName,lastName,dateOfBirth,address,phoneNumber,email)

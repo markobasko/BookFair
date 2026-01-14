@@ -8,16 +8,18 @@ namespace BookFair.Model
 
 		public int Id { get; set; }
 		public int MembershipNumber { get; set; }
-		public List<Book> PurchasedBooks { get; set; }
 
 		public Visitor()
 		{
 			Id = -1;
 			MembershipNumber = 0;
-			PurchasedBooks = new List<Book>();
 		}
+        public Visitor(string firstName, string lastName, DateTime dateOfBirth, Address address, string phoneNumber, string email, int membershipNumber) : base(firstName, lastName, dateOfBirth, address, phoneNumber, email)
+        {
+            MembershipNumber = membershipNumber; 
+        }
 
-		public override string ToString()
+        public override string ToString()
 		{
 			return $"Visitor[Id:{Id},FirstName{FirstName},LastName{LastName},DateOfBirth{DateOfBirth},Address{Address},PhoneNumber{PhoneNumber},Email{Email}]";
 		}

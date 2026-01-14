@@ -37,13 +37,13 @@ namespace BookFair
                         PrintBooks();
                         break;
                     case "4":
-                        //AddAddress();
+                        AddAddress();
                         break;
                     case "5":
-                        //RemoveAddress();
+                        RemoveAddress();
                         break;
                     case "6":
-                        //PrintAddresses();
+                        PrintAddresses();
                         break;
                     case "7":
                         AddAuthor();
@@ -55,13 +55,13 @@ namespace BookFair
                         PrintAuthor();
                         break;
                     case "10":
-                        //AddVisitor();
+                        AddVisitor();
                         break;
                     case "11":
-                        //RemoveVisitor();
+                        RemoveVisitor();
                         break;
                     case "12":
-                        //PrintVisitors();
+                        PrintVisitors();
                         break;
                     case "13":
                         running = false;
@@ -94,11 +94,11 @@ namespace BookFair
         private void AddBook()
         {
             Console.WriteLine("Book ISBN: ");
-            string ISBN = Console.ReadLine();
+            string ISBN = Console.ReadLine() ?? "";
             Console.WriteLine("Book name: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine() ?? "";
             Console.WriteLine("Book Genre: ");
-            Genre genre = Enum.Parse<Genre>(Console.ReadLine());
+            Genre genre = Enum.Parse<Genre>(Console.ReadLine() ?? "");
             Console.WriteLine("Book Price: ");
             int Price = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Book Number of Pages: ");
@@ -116,6 +116,7 @@ namespace BookFair
         }
         private void RemoveBook()
         {
+            Console.WriteLine("Enter id to remove.");
             int id = Convert.ToInt32(Console.ReadLine());
             _bookService.Remove(id);
         }
@@ -154,6 +155,66 @@ namespace BookFair
         {
             int id = Convert.ToInt32(Console.ReadLine());
             _authorService.Remove(id);
+        }
+        private void AddAddress()
+        {
+            Console.WriteLine("Street: ");
+            string address = Console.ReadLine() ?? "";
+            Console.WriteLine("Street number: ");
+            int stNumber =Convert.ToInt32( Console.ReadLine());
+            Console.WriteLine("Country: ");
+            string country = Console.ReadLine() ?? "";
+            Console.WriteLine("City: ");
+            string city = Console.ReadLine() ?? "";
+            _addressService.Add(new Address(address, stNumber, country, city));
+        }
+        private void PrintAddresses()
+        {
+            List<Address>addresses = _addressService.GetAll();
+            foreach (Address address in addresses)
+            {
+                Console.WriteLine($"{address.Id} {address.Street} {address.StNumber} {address.Country} {address.City} ");
+            }
+        }
+        private void RemoveAddress()
+        {
+            Console.WriteLine("Enter id to remove.");
+            int id = Convert.ToInt32(Console.ReadLine());
+            _addressService.Remove(id);
+        }
+        private void AddVisitor()
+        {
+            Console.WriteLine("Visitors name: ");
+            string visitorsName = Console.ReadLine() ?? "";
+            Console.WriteLine("Visitors last name: ");
+            string visitorsLastName = Console.ReadLine() ?? "";
+            Console.WriteLine("Visitors date of birth: ");
+            DateTime visitorsDateOfBirth =DateTime.Parse( Console.ReadLine() ?? "" );
+            Console.WriteLine("Visitors Address");
+            Address Address = new Address() { Id = Convert.ToInt32(Console.ReadLine()) };
+            Console.WriteLine("Visitors Phone Number: ");
+            string visitorsPhoneNumber = Console.ReadLine() ?? "";
+            Console.WriteLine("Visitors Email: ");
+            string visitorsEmail = Console.ReadLine() ?? "";
+            Console.WriteLine("Membership number: ");
+            int membershipNumber = Convert.ToInt32(Console.ReadLine());
+            Visitor newVisitor = new Visitor(visitorsName, visitorsLastName, visitorsDateOfBirth, Address, visitorsPhoneNumber, visitorsEmail, membershipNumber);
+            _visitorService.Add(newVisitor);
+        }
+        private void RemoveVisitor()
+        {
+            Console.WriteLine("Enter id to remove.");
+            int id = Convert.ToInt32(Console.ReadLine());
+            _visitorService.Remove(id);
+        }
+        private void PrintVisitors()
+        {
+            List<Visitor> visitors = _visitorService.GetAll();
+            foreach (Visitor visitor in visitors)
+            {
+                Console.WriteLine($"{visitor.Id} {visitor.FirstName} {visitor.LastName} {visitor.DateOfBirth} {visitor.Address.Id} {visitor.PhoneNumber} {visitor.Email} {visitor.MembershipNumber}");
+            }
+
         }
     }
 }
