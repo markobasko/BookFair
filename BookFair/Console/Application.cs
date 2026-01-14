@@ -46,13 +46,13 @@ namespace BookFair
                         //PrintAddresses();
                         break;
                     case "7":
-                        //AddAutor();
+                        AddAuthor();
                         break;
                     case "8":
-                        //RemoveAuthor();
+                        RemoveAuthor();
                         break;
                     case "9":
-                        //PrintAuthors();
+                        PrintAuthor();
                         break;
                     case "10":
                         //AddVisitor();
@@ -118,6 +118,42 @@ namespace BookFair
         {
             int id = Convert.ToInt32(Console.ReadLine());
             _bookService.Remove(id);
+        }
+
+        private void AddAuthor()
+        {
+            Console.WriteLine("Author FirstName: ");
+            string FirstName = Console.ReadLine() ?? "";
+            Console.WriteLine("Author LastName: ");
+            string LastName = Console.ReadLine() ?? ""; 
+            Console.WriteLine("Author DateOfBirth: ");
+            DateTime DateOfBirth = DateTime.Parse(Console.ReadLine() ?? "");
+            Console.WriteLine("Author Address Id: ");
+            Address Address = new Address() {Id=Convert.ToInt32(Console.ReadLine()) };
+            Console.WriteLine("Author Phone Number: ");
+            string PhoneNumber = Console.ReadLine() ?? "";
+            Console.WriteLine("Author Email: ");
+            string Email = Console.ReadLine() ?? "";
+            Console.WriteLine("Author IdCardNumber: ");
+            string IdCardNumber = Console.ReadLine() ?? "";
+            Console.WriteLine("Author YearsOfExperience: ");
+            int YearsOfExperience = Convert.ToInt32(Console.ReadLine());
+            Author newauthor = new Author(FirstName, LastName, DateOfBirth, Address, PhoneNumber, Email, IdCardNumber, YearsOfExperience);
+            _authorService.Add(newauthor);
+
+        }
+        private void PrintAuthor()
+        {
+            List<Author> authors = _authorService.GetAll();
+            foreach (Author author in authors)
+            {
+                Console.WriteLine($"\nauthor Id: {author.Id} \nauthor FirstName: {author.FirstName} \nauthor LastName: {author.LastName} \nauthor DateOfBirth: {author.DateOfBirth} \nauthor Address: {author.Address} \nAuthor Phone Number: {author.PhoneNumber} \nAuthor Email: {author.Email} \nAuthor IdCardNumber: {author.IdCardNumber} \nAuthor YearsOfExperience: {author.YearsOfExperience}");
+            }
+        }
+        private void RemoveAuthor()
+        {
+            int id = Convert.ToInt32(Console.ReadLine());
+            _authorService.Remove(id);
         }
     }
 }

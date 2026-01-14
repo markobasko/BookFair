@@ -17,6 +17,12 @@ namespace BookFair.Model
 			YearsOfExperience = 0;
 			WrittenBooks = new List<Book>();
 		}
+
+        public Author(string firstName, string lastName, DateTime dateOfBirth,Address address,string phoneNumber, string email,string idCardNumber, int yearsOfExperience) : base(firstName,lastName,dateOfBirth,address,phoneNumber,email)
+        {
+            IdCardNumber = idCardNumber;
+            YearsOfExperience = yearsOfExperience;
+        }
 		public override string ToString()
 		{
 			return $"Author[Id:{Id},FirstName:{FirstName},LastName:{LastName},BirthDate:{DateOfBirth},Address:{Address},PhoneNumber:{PhoneNumber},Email:{Email},YearsExperience:{YearsOfExperience},IDLK:{IdCardNumber}]";
