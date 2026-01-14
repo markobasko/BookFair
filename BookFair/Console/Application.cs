@@ -31,10 +31,10 @@ namespace BookFair
                         AddBook();
                         break;
                     case "2":
-                        //RemoveBook();
+                        RemoveBook();
                         break;
                     case "3":
-                        //PrintBooks();
+                        PrintBooks();
                         break;
                     case "4":
                         //AddAddress();
@@ -105,6 +105,19 @@ namespace BookFair
             int NumberOfPages = Convert.ToInt32(Console.ReadLine());
             Book newbook = new Book(ISBN, name, genre, Price, NumberOfPages);
             _bookService.Add(newbook);
+        }
+        private void PrintBooks()
+        {
+            List<Book> books = _bookService.GetAll();
+            foreach (Book book in books)
+            {
+                Console.WriteLine($"{book.Id} {book.Name} {book.ISBN} {book.Genre} price: {book.Price} number of pages: {book.NumberOfPages}");
+            }
+        }
+        private void RemoveBook()
+        {
+            int id = Convert.ToInt32(Console.ReadLine());
+            _bookService.Remove(id);
         }
     }
 }
